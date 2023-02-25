@@ -1,13 +1,19 @@
+import { useState } from "react";
 import "./App.css";
 import TodoForm from "./components/Todos/TodoForm";
-import TodoList from "./components/Todos/Todolist";
+import TodoList from "./components/Todos/TodoList";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodoHandler = (text) => {
+    setTodos((prevTodos) => [...prevTodos, text]);
+  };
   return (
     <div className="App">
       <h1>Todo App</h1>
-      <TodoForm />
-      <TodoList />
+      <TodoForm addTodo={addTodoHandler} />
+      <TodoList todos={todos} />
     </div>
   );
 }
